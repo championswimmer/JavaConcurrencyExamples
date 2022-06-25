@@ -2,18 +2,15 @@ plugins {
     id("java")
 }
 
-group = "tech.arnav"
-version = "1.0-SNAPSHOT"
+subprojects {
+    apply(plugin = "java")
 
-repositories {
-    mavenCentral()
-}
+    repositories {
+        mavenCentral()
+    }
 
-dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
-}
+    tasks.getByName<Test>("test") {
+        useJUnitPlatform()
+    }
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
 }
